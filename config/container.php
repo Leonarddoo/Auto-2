@@ -9,7 +9,7 @@ use Slim\Views\TwigMiddleware;
 
 return [
     'settings' => function () {
-        return require __DIR__ . '/settings.php';
+        return include __DIR__ . '/settings.php';
     },
     'db' => function (ContainerInterface $container) {
         $capsule = new \Illuminate\Database\Capsule\Manager;
@@ -40,7 +40,7 @@ return [
             (bool)$settings['log_error_details']
         );
     },
-    'view' => function(ContainerInterface $container) {
+    'view' => function (ContainerInterface $container) {
         $viewPath = $container->get('settings')['view'];
         $twig = Twig::create($viewPath, ['cache' => false]);
 

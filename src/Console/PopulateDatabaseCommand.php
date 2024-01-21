@@ -28,11 +28,13 @@ class PopulateDatabaseCommand extends Command
         $this->setDescription('Populate database');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output ): int
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('Populate database...');
 
-        /** @var \Illuminate\Database\Capsule\Manager $db */
+        /**
+ * @var \Illuminate\Database\Capsule\Manager $db
+*/
         $db = $this->app->getContainer()->get('db');
 
         $db->getConnection()->statement("SET FOREIGN_KEY_CHECKS=0");
@@ -63,7 +65,8 @@ class PopulateDatabaseCommand extends Command
         (6,'Anais','Dufour',2,'anais@aqume.net',NULL,'DBA', now(), now()),
         (7,'Sylvain','Poirson',3,'sylvain@factice.local',NULL,'Administrateur réseau', now(), now()),
         (8,'Telma','Thiriet',4,'telma@generique.org',NULL,'Juriste', now(), now())
-        ");**/
+        ");
+**/
 
         $faker = Faker\Factory::create('fr_FR');
 
@@ -98,7 +101,6 @@ class PopulateDatabaseCommand extends Command
                     $employee->job_title = $faker->jobTitle();
                     $employee->save();
                 }
-
             }
         }
 
